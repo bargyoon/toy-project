@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 import com.kh.toy.common.db.JDBCTemplate;
@@ -128,7 +129,6 @@ public class MemberDao {
 	}
 	
 	
-
 	public int updateMember(Member member, Connection conn) {
 		int res = 0;
 		

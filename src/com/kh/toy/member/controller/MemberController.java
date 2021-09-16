@@ -67,12 +67,15 @@ public class MemberController extends HttpServlet {
 		case "mypage":
 			mypage(request,response);
 			break;
-			
+		
+		
 		default: throw new PageNotFoundException();
 		
 		}
 	
 	}
+
+	
 
 	private void mypage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/member/mypage").forward(request, response);

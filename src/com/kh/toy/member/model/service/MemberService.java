@@ -140,9 +140,4 @@ public class MemberService {
 
 	}
 
-	public Member selectOne(String userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
