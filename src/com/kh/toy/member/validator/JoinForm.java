@@ -42,7 +42,7 @@ public class JoinForm {
 		//비밀번호가 영어, 숫자, 특수문자 조합의 8자리 이상의 문자열인지 확인
 		if(!Pattern.matches("(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Zㄱ-힣0-9]).{8,}", password)) {
 			failedValidation.put("password",password);
-			System.out.println("뭐가 아닌거지");
+			
 			isFailed = true;
 		}
 		
