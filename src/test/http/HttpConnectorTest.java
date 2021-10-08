@@ -47,12 +47,66 @@ public class HttpConnectorTest extends HttpServlet {
 		case "test-kakao":
 			testKakaoAPI();
 			break;
+		case "test-kakaoLogin":
+			testKakaoLoginAPI();
+			break;
 		case "test-naver":
 			testNaverAPI();
 			break;
 		default: throw new PageNotFoundException();
 		
 		}
+	}
+	
+	private void testKakaoLoginAPI() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void testKakaoAPI() {
+		HttpConnector conn = new HttpConnector();
+		
+		
+		String queryString = conn.urlEncodedForm(RequestParams.builder().params("query", "자바").build());
+		String url = "https://dapi.kakao.com/v3/search/book?"+queryString;
+		Map<String,String> headers = new HashMap<String, String>();
+		headers.put("Authorization", "KakaoAK ce76be2d4df22f340c760f62a17e1cc1");
+		
+		String response = conn.get(url,headers);
+		
+		//json Object => Map
+		//json array => ArrayList
+		//json String => String
+		//json Number => double
+		//json null => null
+		//json boolean => boolean
+		
+		
+		System.out.println(response);
+		
+		JsonObject datas = conn.getAsJson(url, headers).getAsJsonObject();
+		
+		for (JsonElement e : datas.getAsJsonArray("documents")) {	
+			String author = e.getAsJsonObject().get("authors").getAsString();
+			String title = e.getAsJsonObject().get("title").getAsString();
+			
+			System.out.println("작가 : " + author);
+			System.out.println("제목 : " + title);
+			
+		}
+		
+		
+		/*
+		 * Map<String,Object> datas = gson.fromJson(response, Map.class);
+		 * List<Map<String, Object>> documents = (List<Map<String,Object>>)
+		 * datas.get("documents");
+		 * 
+		 * for (Map<String,Object> doc : documents) { for (String key : doc.keySet()) {
+		 * System.out.println(key + " : " + doc.get(key)); }
+		 * 
+		 * System.out.println("============================================"); }
+		 */
+		
 	}
 	
 	private void testNaverAPI() {
@@ -115,51 +169,7 @@ public class HttpConnectorTest extends HttpServlet {
 	}
 
 		//@Test
-		private void testKakaoAPI() {
-			HttpConnector conn = new HttpConnector();
-			
-			
-			String queryString = conn.urlEncodedForm(RequestParams.builder().params("query", "자바").build());
-			String url = "https://dapi.kakao.com/v3/search/book?"+queryString;
-			Map<String,String> headers = new HashMap<String, String>();
-			headers.put("Authorization", "KakaoAK ce76be2d4df22f340c760f62a17e1cc1");
-			
-			String response = conn.get(url,headers);
-			
-			//json Object => Map
-			//json array => ArrayList
-			//json String => String
-			//json Number => double
-			//json null => null
-			//json boolean => boolean
-			
-			
-			System.out.println(response);
-			
-			JsonObject datas = conn.getAsJson(url, headers).getAsJsonObject();
-			
-			for (JsonElement e : datas.getAsJsonArray("documents")) {	
-				String author = e.getAsJsonObject().get("authors").getAsString();
-				String title = e.getAsJsonObject().get("title").getAsString();
-				
-				System.out.println("작가 : " + author);
-				System.out.println("제목 : " + title);
-				
-			}
-			
-			
-			/*
-			 * Map<String,Object> datas = gson.fromJson(response, Map.class);
-			 * List<Map<String, Object>> documents = (List<Map<String,Object>>)
-			 * datas.get("documents");
-			 * 
-			 * for (Map<String,Object> doc : documents) { for (String key : doc.keySet()) {
-			 * System.out.println(key + " : " + doc.get(key)); }
-			 * 
-			 * System.out.println("============================================"); }
-			 */
-			
-		}
+		
 		
 		
 
