@@ -43,7 +43,7 @@ public class AdminMemberController extends HttpServlet {
 			memberList(request,response);
 			break;
 		case "leave":
-			leaveMember(request,response);
+			leaveMember (request,response);
 			break;
 			
 		default:throw new PageNotFoundException();
