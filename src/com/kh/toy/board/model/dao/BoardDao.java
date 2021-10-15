@@ -23,6 +23,8 @@ public class BoardDao {
 				+ "values(sc_board_idx.nextval,?,?,?)";
 		
 		
+		
+		
 		PreparedStatement pstm = null;
 		
 		try {
