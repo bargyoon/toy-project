@@ -30,6 +30,7 @@ public class AdminMemberController extends HttpServlet {
      */
     public AdminMemberController() {
         super();
+        
         // TODO Auto-generated constructor stub
     }
 
